@@ -4,19 +4,23 @@ describe User do
   describe "Validations" do
     context "invalid attributes" do
       it "is invalid without name" do
-        user = User.new
+        user = User.new(email: "f@gmail.com", password: "boom")
         expect(user).to be_invalid
       end
     end
 
     context "valid attributes" do
-      it "" do
+      it "is valid with a name" do
+        user = User.new(user_name: "Fran", email: "f@gmail.com", password: "boom")
+        expect(user).to be_valid
       end
     end
   end
 
   describe "Relationships" do
-    it "" do
+    it "has many ideas" do
+      user = User.new(user_name: "Fran", email: "f@gmail.com", password: "boom")
+      expect(user).to respond_to(:ideas)
     end
   end
 end
