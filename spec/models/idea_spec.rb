@@ -5,7 +5,7 @@ describe Idea do
     context "with valid attributes" do
       it "is valid with all attributes" do
         user = User.create(user_name: "Fran", email: "f@gmail.com", password: "boom")
-        category = Category.new(name: "productivity")
+        category = Category.create(name: "productivity")
         idea = user.ideas.create!(name: "great idea", category: category)
 
         expect(idea).to be_valid
