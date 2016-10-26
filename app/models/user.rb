@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates_confirmation_of :password
   has_many :ideas
+  has_secure_password
 end
