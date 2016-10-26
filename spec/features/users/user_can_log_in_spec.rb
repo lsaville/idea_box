@@ -7,14 +7,15 @@ describe "User can log in" do
 
       visit login_path
 
-      fill_in "User name", with: user.nam
-      fill_in "email", with: user.email
-      fill_in "Password", with: user.password
-      fill_in "Password confirmation", with: user.password
-      click_on "Login"
+      within("form") do
+        fill_in "email", with: user.email
+        fill_in "Password", with: user.password
+        click_on "Login"
+      end
 
       expect(current_path).to eq(user_path(user))
       expect(page).to have_content "Hi, Jon"
+      expect(page).to have_content "Successfully logged in!"
       expect(page).to have_content "Logout"
     end
   end
