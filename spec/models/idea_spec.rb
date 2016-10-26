@@ -37,5 +37,12 @@ describe Idea do
 
       expect(idea).to respond_to(:category)
     end
+
+    it "has many images" do
+      user = User.new(user_name: "Fran", email: "f@gmail.com", password: "boom")
+      idea = user.ideas.new(name: "flying bicycle")
+
+      expect(idea).to respond_to(:images)
+    end
   end
 end
