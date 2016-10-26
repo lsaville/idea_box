@@ -11,7 +11,7 @@ describe User do
 
     context "valid attributes" do
       it "is valid with a name" do
-        user = User.new(user_name: "Fran", email: "f@gmail.com", password: "boom" )
+        user = User.new(name: "Fran", email: "f@gmail.com", password: "boom" )
         expect(user).to be_valid
       end
     end
@@ -19,7 +19,7 @@ describe User do
 
   describe "Relationships" do
     it "has many ideas" do
-      user = User.new(user_name: "Fran", email: "f@gmail.com", password: "boom")
+      user = User.new(name: "Fran", email: "f@gmail.com", password: "boom")
       expect(user).to respond_to(:ideas)
     end
   end
