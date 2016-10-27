@@ -9,9 +9,9 @@
   </head>
 
   <body>
-    <% flash.each do |k,v| %>
-      <div class="alert-<%= k %>">
-        <%= v %>
+    <% flash.each do |key, value| %>
+      <div class="alert-<%= key %>">
+        <%= value %>
       </div>
     <% end %>
 
