@@ -1,4 +1,6 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
+  before_action :require_admin
+
   def new
     @category = Category.new
   end
@@ -7,7 +9,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "Successfully created category!"
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       render :new
     end
@@ -26,7 +28,7 @@ class CategoriesController < ApplicationController
     @category.update(category_params)
     if @category.save
       flash[:success] = "Successfully updated category!"
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       render :edit
     end
@@ -36,10 +38,18 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.delete
     flash[:success] = "Successfully deleted #{@category.name}"
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   private
+
+  def require_admin
+    render file: '/public/404' unless current_admin?
+  end
+
+  def current_admin?
+    current_user && current_user.admin?
+  end
 
   def category_params
     params.require(:category).permit(:name)
