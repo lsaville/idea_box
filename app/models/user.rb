@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_many :ideas
 
   has_secure_password
+
+  enum role: [:default, :admin]
 end
