@@ -1,0 +1,7 @@
+<h1>All Categories</h1>
+
+<% @categories.each do |category|%>
+  <div class="category-<%= category.name %>">
+    <%= category.name %>
+  </div>
+<% end %>
