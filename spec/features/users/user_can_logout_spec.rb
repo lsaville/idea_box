@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "User can logout" do
   scenario "they click a logout out button and are logged out" do
-    user = User.create(name: "Jon", email: "j@jon.com", password: "1234")
+    user = Fabricate(:user)
 
     visit login_path
 
