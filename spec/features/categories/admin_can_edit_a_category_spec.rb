@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "admin can edit an existing category" do
   scenario "they click edit and enter a name in category#edit" do
-    category = Category.create(name: "app")
-    admin = User.create(name: "jon", email: "j@jon.com", password: "1234", password_confirmation: "1234", role: 1)
+    category = Fabricate(:category)
+    admin = Fabricate(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit admin_categories_path

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "User can log in" do
   context "they are registered users" do
-    scenario "They visit the login page and enter data, see greeating" do
-      user = User.create(name: "Jon", email: "j@jon.com", password: "1234")
+    scenario "They visit the login page and enter data, see greeting" do
+      user = Fabricate(:user)
 
       visit login_path
 
@@ -14,7 +14,7 @@ describe "User can log in" do
       end
 
       expect(current_path).to eq(user_path(user))
-      expect(page).to have_content "Hi, Jon"
+      expect(page).to have_content "Hi, #{user.name}"
       expect(page).to have_content "Successfully logged in!"
       expect(page).to have_content "Logout"
     end

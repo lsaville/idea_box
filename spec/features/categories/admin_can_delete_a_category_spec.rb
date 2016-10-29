@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe "Admin can delete a category" do
   scenario "they visit the index page and click delete" do
-    category = Category.create(name: "food")
-    admin = User.create(name: "jon", email: "j@jon.com", password: "1234", password_confirmation: "1234", role: 1)
+    category = Fabricate(:category)
+    admin = Fabricate(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit admin_categories_path
 
-    within(".category_food") do
+    within(".category_#{category.name}") do
       click_on "Delete"
     end
 
